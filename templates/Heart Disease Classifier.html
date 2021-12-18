@@ -1,0 +1,161 @@
+<html>
+	<head>
+	<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+		<title>Heart Disease Prediction</title>
+		<style>
+			.icon{
+				text-decoration: none;
+				color: #fff;
+			}
+		</style>
+	</head>
+	<body>
+	<!-- Java Script -->	
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+		
+		<!-- Navbar-->
+		<nav class="navbar navbar-dark bg-dark">
+			<span class="navbar-brand mb-0 h1"></i>Heart Disease Prediction Tool</span>
+			<div align="right">
+				<a class="icon" href="https://github.com/devendra-mandava" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+			    <a class="icon" href="https://www.linkedin.com/in/devendra-mandava" target="_blank"><i class="fa fa-fw fa-linkedin"></i></a>
+			</div>
+			
+		</nav>
+		<div class="container">
+			<br>
+			<!--Prediction Result-->
+					  <div class="container border bg-warning rounded p-2" id ="result">
+							<center><strong style="color:black">{{result}}</strong></center>
+					 </div>
+			<!--Form-->
+			<form action = "{{url_for('predict')}}" method ="POST" >
+				<fieldset>
+
+					<div class="container border border-dark text-white  bg-secondary rounded p-5">
+				<center><legend>Heart Disease Prediction</legend></center><br>
+				  
+						
+							<label class="form-label" for="age">Age</label>
+							<input type="number" class="form-control mb-3" id="age" name="age" required>
+						
+
+						
+							<label class="form-label"  for="sex">Sex</label>
+							<select class="form-control mb-3" id="sex"  name="sex" required>
+							  <option disabled selected value> -- Select an Option -- </option>
+							  <option value = "0">Male</option>
+							  <option value = "1">Female</option>
+							</select>
+					  <br>
+					 
+							<label class="form-label"  for="cp">Chest Pain Type</label>
+							<select class="form-control mb-3" id="cp" name = "cp" required>
+							  <option disabled selected value> -- Select an Option -- </option>
+							  <option value = "0">Typical Angina</option>
+							  <option value = "1">Atypical Angina</option>
+							  <option value = "2">Non-anginal Pain</option>
+							  <option value = "3">Asymptomatic</option>
+							</select>
+						 
+						  
+							<label class="form-label"  for="trestbps">Resting Blood Pressure in mm Hg</label>
+							<input type="number" class="form-control mb-3" id="trestbps" name="trestbps"  placeholder="A number in range [94-200] mmHg" required>
+						  
+						  
+							<label class="form-label"  for="chol">Serum Cholestoral in mg/dl</label>
+							<input type="number" class="form-control mb-3" id="chol" name="chol" placeholder="A number in range [126-564] mg/dl" required>
+						  
+						  
+							<label  class="form-label"  for="fbs">Fasting Blood Sugar > 120 mg/dl</label>
+							<select class="form-control mb-3" id="fbs" name="fbs" required>
+							  <option disabled selected value> -- Select an Option -- </option>
+							  <option value = "0">False</option>
+							  <option value = "1">True</option>
+							</select>
+						
+					  
+					  <br>
+					  
+								<label class="form-label"  for="restecg">Resting ECG Results </label>
+								<select class="form-control mb-3" id="restecg" name="restecg" required>
+								  <option disabled selected value> -- Select an Option -- </option>
+								  <option value = "0">Normal</option>
+								  <option value = "1">Having ST-T wave abnormality  </option>
+								  <option value = "2"> Probable or definite left ventricular hypertrophy  </option>
+								</select>
+							  
+							  
+								<label class="form-label"  for="thalach">Maximum Heart Rate</label>
+								<input type="number" class="form-control mb-3" id="thalach" name="thalach" placeholder="A number in range [71-202] bpm" required>
+							  
+							 
+								<label class="form-label"  for="exang">ST Depression Induced</label>
+								<input type="number" step="any" class="form-control mb-3" id="exang" name="exang" placeholder="ST depression, typically in [0-6.2]" required>
+							  
+							  
+								<label class="form-label"  for="exang">Exercise Induced Angina </label>
+								<select class="form-control mb-3" id="oldpeak" name="oldpeak" required>
+								  <option disabled selected value> -- Select an Option -- </option>
+								  <option value = "0">No</option>
+								  <option value = "1">Yes</option>
+								</select>
+							  
+						  <br>
+						 
+							<label class="form-label"  for="slope">Slope of the Peak Exercise ST Segment </label>
+							<select class="form-control mb-3" id="slope" name="slope" required>
+							  <option disabled selected value> -- Select an Option -- </option>
+							  <option value = "0">Upsloping</option>
+							  <option value = "1">Flat</option>
+							  <option value = "2">Downsloping</option>
+							</select>
+						 
+						  
+							<label class="form-label"  for="ca">Number of Vessels Colored by Flourosopy</label>
+							<select class="form-control mb-3" id="ca" name = "ca" required>
+							  <option disabled selected value> -- Select an Option -- </option>
+							  <option value = "0">0</option>
+							  <option value = "1">1</option>
+							  <option value = "2">2</option>
+							  <option value = "3">3</option>
+							</select>
+						  
+							<label class="form-label"  for="thal">Thalassemia</label>
+							<select class="form-control mb-3" id="thal" name = "thal" required>
+							  <option disabled selected value> -- Select an Option -- </option>
+							  <option value = "3">Normal</option>
+							  <option value = "6">Fixed defect</option>
+							  <option value = "7">Reversable defect</option>
+							</select>
+						 
+					  <br>
+					  <div class="form-group">
+						<input class="btn btn-success btn-block mb-3" type="submit" value="Result">
+					  </div>
+					  
+					  
+				     </div>
+
+					 </div>
+			 </fieldset>
+			</form>
+			
+		</div>
+
+		 <div class='footer bg-dark text-white p-2'>
+    
+    <p class='footer-description'><center>Developed by Devendra</center></p>
+  </div>
+		
+	</body>
+</html>
+
